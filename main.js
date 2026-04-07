@@ -29,7 +29,10 @@ function tampilkan() {
     let harga = dataBarang[i]
     total += harga
     
-    output += "Barang ke-" + (i + 1) + ": Rp " + rupiah(harga) + "<br>"
+    output += "Barang ke-" + (i + 1) + ": Rp " + rupiah(harga) 
+    + "<button onclick='hapusIndex("+i+")' class='hapus2'>hapus</button>"
+    
+    +"<br>"
   }
   
   output += "<hr>Total: Rp" + rupiah(total)
@@ -46,22 +49,55 @@ function reset() {
   dataBarang = []
   tampilkan()
 }
-
-//fungsi untuk mengedit harga barang berdasarkan nomor barang
+// fungsi untuk mengedit harga barang berdasarkan nomor barang
 function edit() {
-  //ubah nomor barang menjadi index array dengan mengurangi 1
-  let index = Number(document.getElementById("nomor").value) - 1
-  // ambil harga editdari input
-  let harga = Number(document.getElementById("hargaedit").value)
+  // ubah nomor barang manjadi index arrey dengan mengurangi 1
+  let index = Number(document.getElementById("nomor").value) -1
+  // ambil harga edit dari input
+  let harga = Number(document.getElementById("hargaedit").value) 
   
-  // periksa apakah indrx valid
+  // periksa apakah index valid
   if (index >= 0 && index < dataBarang.length) {
-    dataBarang[index] = harga
-  } else {
-    alert("Nomor barang tidak valid")
-  }
-tampilkan()
-document.getElementById("nomor").value =""
-document.getElementById("hargaedit").value =""
-
+// update harga di array dataBarang
+dataBarang[index] = harga
+} else {
+  //jika nomor barang tidak valid,tampilkan alert
+  alert("Nomor barang tidak valid")
 }
+
+tampilkan()
+//kosongkan input nomor dan harta edit setelah diedit
+document.getElementById("nomor").value =""
+document.getElementById("hargaedit"). value=""
+}
+//fungsi untuk menghapus barang berdasarkan nomor barang
+function hapusNomor() {
+  //ubah nomor barang menjadi index arry dengan mengurangi 1
+  let index = Number(document.getElementById.length("nomorhapus").value)-1
+ 
+ //periksa apakah index valid
+ if (index >= 0 && index < dataBarang.length) {
+   //hapus barang dari arry dataBarang menggunakan splice
+   dataBarang.splice(index, 1) 
+ } else {
+   //jika nomer barang tidak valid, tampilkan alert
+   alert("Nomor barang tidak valid")
+ }
+ tampilkan()
+//kosongkan input nomor hapus setelah dihapus
+document.getElementById("nomorHapus").value =""
+}
+//fungsi untuk menghapus barang berdasarkan index
+function hapusIndex(index) {
+  
+
+  //periksa apakah index valid
+ if (index >= 0 && index < dataBarang.length) {
+   //hapus barang dari arry dataBarang menggunakan splice
+   dataBarang.splice(index, 1) 
+ } else {
+   //jika nomer barang tidak valid, tampilkan alert
+   alert("Nomor barang tidak valid")
+ }
+ tampilkan()
+ }
